@@ -11,9 +11,14 @@ function range(start, end, step) {
 function sum(numbers) {
   // Write a sum function that takes an array of numbers
   // and returns the sum of these numbers.
-   var sum;
+   
+    var sum=0;
     for(var i=0; i < numbers.length; i++){
+        if(typeof numbers[i] !== 'number'){
+            return NaN;
+        }
          sum +=numbers[i];
+
     }
     return sum;
 }
