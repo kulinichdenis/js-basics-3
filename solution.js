@@ -1,22 +1,54 @@
 function range(start, end, step) {
   // Write a range function that takes two arguments, start and end,
   // and returns an array containing all the numbers from start up to (and including) end.
+   var arr=[];
+    for(var i=start; i<=end; i+=step){
+        arr.push(i);
+    }
+    return arr;
 }
 
 function sum(numbers) {
   // Write a sum function that takes an array of numbers
   // and returns the sum of these numbers.
+   var sum;
+    for(var i=0; i < numbers.length; i++){
+         sum +=numbers[i];
+    }
+    return sum;
 }
 
 function reverseArray(arr) {
   // Write a function which takes an array as argument
   // and produces a new array that has the same elements in the inverse order.
+   var arrInner=[];
+    for(var i=arr.length-1; 0 <= i; i--){
+
+        arrInner.push(arr[i]);
+    }
+    return arrInner;
 }
 
 function reverseArrayInPlace(arr) {
   // Write a function that does what the reverse method does:
   // it modifies the array given as argument in order to reverse
   // its elements. It should not use the standard reverse method.
+  if (arr.length === 0){
+        return [];
+    }
+
+    var a = [];
+    var b = [];
+    var p = arr[0];
+
+    for (var i = 1; i < arr.length; i++) {
+        if (arr[i] > p){
+            a[a.length] = arr[i];
+        }else {
+            b[b.length] = arr[i];
+        }
+    }
+    return reverseArrayInPlace(a).concat(p, reverseArrayInPlace(b));
 }
 
 function arrayToList(arr) {
@@ -41,6 +73,15 @@ function arrayToList(arr) {
   // Write a function arrayToList that builds up a data structure like
   // the previous one when given [1, 2, 3] as argument. It should use
   // helper function prepend.
+  var obj;
+    for(var i = arr.length-1; 0 <= i; i--){
+        if(!obj){
+            obj = {value:arr[i], rest:null};
+        }else{
+            obj = {value:arr[i], rest:obj};
+        }
+    }
+    return obj;
 }
 
 function listToArray(list) {
@@ -50,6 +91,12 @@ function listToArray(list) {
 function prepend(item, list) {
   // Write a function which takes an element and a list and creates a new list
   // that adds the element to the front of the input list.
+  var listNew;
+   listNew.new = item;
+   for(var key in list){
+       listNew[key] = temp[key];
+   }
+    return listNew;
 }
 
 function nth(n, list) {
