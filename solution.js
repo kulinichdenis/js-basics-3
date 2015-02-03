@@ -1,7 +1,20 @@
 function range(start, end, step) {
   // Write a range function that takes two arguments, start and end,
   // and returns an array containing all the numbers from start up to (and including) end.
-   var arr=[];
+       var arr=[];
+    if(!step){
+        step = 1;
+    }
+//    if(step < 0){
+//        for(var i=start; i<=end; i+=step){
+//            arr.push(i);
+//        }
+//    }
+    if(step < 0){
+        for(var i=start; i>=end; i+=step){
+            arr.push(i);
+        }
+    }
     for(var i=start; i<=end; i+=step){
         arr.push(i);
     }
@@ -39,16 +52,16 @@ function reverseArrayInPlace(arr) {
   // it modifies the array given as argument in order to reverse
   // its elements. It should not use the standard reverse method.
 	var k = 0;
-      var mid = Math.floor(arr.length/2);
-      var l = 0;
-      var r = arr.length-1;
-      while(k <= mid){
-          var leftTemp = arr[l+k];
-          var rightTemp = arr[r-k];
-          arr[l+k] = rightTemp;
-          arr[r-k] = leftTemp;
-          k++;
-      }
+    var mid = Math.floor(arr.length/2);
+    var l = 0;
+    var r = arr.length-1;
+    while(k <= mid){
+        var leftTemp = arr[l+k];
+        var rightTemp = arr[r-k];
+        arr[l+k] = rightTemp;
+        arr[r-k] = leftTemp;
+        k++;
+    }
 }
 
 function arrayToList(arr) {
