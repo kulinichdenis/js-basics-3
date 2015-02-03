@@ -86,6 +86,11 @@ function arrayToList(arr) {
 
 function listToArray(list) {
   // Write a function that produces an array from a list
+   var arr = [];
+    for(var key in list){
+        arr.push(list[key]);
+    }
+    return arr;
 }
 
 function prepend(item, list) {
