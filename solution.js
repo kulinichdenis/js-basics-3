@@ -38,22 +38,17 @@ function reverseArrayInPlace(arr) {
   // Write a function that does what the reverse method does:
   // it modifies the array given as argument in order to reverse
   // its elements. It should not use the standard reverse method.
-  if (arr.length === 0){
-        return [];
-    }
-
-    var a = [];
-    var b = [];
-    var p = arr[0];
-
-    for (var i = 1; i < arr.length; i++) {
-        if (arr[i] > p){
-            a[a.length] = arr[i];
-        }else {
-            b[b.length] = arr[i];
-        }
-    }
-    return reverseArrayInPlace(a).concat(p, reverseArrayInPlace(b));
+	var k = 0;
+      var mid = Math.floor(arr.length/2);
+      var l = 0;
+      var r = arr.length-1;
+      while(k <= mid){
+          var leftTemp = arr[l+k];
+          var rightTemp = arr[r-k];
+          arr[l+k] = rightTemp;
+          arr[r-k] = leftTemp;
+          k++;
+      }
 }
 
 function arrayToList(arr) {
