@@ -5,11 +5,6 @@ function range(start, end, step) {
     if(!step){
         step = 1;
     }
-//    if(step < 0){
-//        for(var i=start; i<=end; i+=step){
-//            arr.push(i);
-//        }
-//    }
     if(step < 0){
         for(var i=start; i>=end; i+=step){
             arr.push(i);
@@ -51,17 +46,20 @@ function reverseArrayInPlace(arr) {
   // Write a function that does what the reverse method does:
   // it modifies the array given as argument in order to reverse
   // its elements. It should not use the standard reverse method.
-	var k = 0;
+	if(arr.length >= 2){
+    var k = 0;
     var mid = Math.floor(arr.length/2);
     var l = 0;
     var r = arr.length-1;
-    while(k <= mid){
+    while(k < mid){
         var leftTemp = arr[l+k];
         var rightTemp = arr[r-k];
         arr[l+k] = rightTemp;
         arr[r-k] = leftTemp;
         k++;
     }
+    }
+    return arr;
 }
 
 function arrayToList(arr) {
@@ -98,10 +96,16 @@ function arrayToList(arr) {
 }
 
 function listToArray(list) {
-  // Write a function that produces an array from a list
-   var arr = [];
-    for(var key in list){
-        arr.push(list[key]);
+    // Write a function that produces an array from a list
+
+    var arr = [];
+    for (var item in list){
+        if (typeof list[item] === 'object' && list[item] !== null) {
+            arr = arr.concat(listToArray(list.rest));
+        }
+        if(typeof list[item] !== 'object'){
+            arr.push(list.value);
+        }
     }
     return arr;
 }
@@ -131,6 +135,27 @@ function deepEqual(a, b) {
   // only if they are the same value or are objects with the same
   // properties whose values are also equal when compared with
   // a recursive call to deepEqual.
+    if(typeof a === 'object' && typeof b === 'object'){
+        for(var key in a){
+            if(b.hasOwnProperty(key)){
+                if(!deepEqual(a[key],b[key])){
+                    return false;
+                }
+            }else{
+                return false;
+            }
+        }
+        for (var key in b) {
+            if (!a.hasOwnProperty(key)) {
+                return false;
+            }
+        }
+    }else{
+        if(a !== b){
+            return false;
+        }
+    }
+    return true;
 }
 
 module.exports = {
