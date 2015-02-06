@@ -22,9 +22,9 @@ function sum(numbers) {
    
     var sum=0;
     for(var i=0; i < numbers.length; i++){
-        if(typeof numbers[i] !== 'number'){
-            return NaN;
-        }
+//        if(typeof numbers[i] !== 'number'){
+//            return NaN;
+//        }
          sum +=numbers[i];
 
     }
@@ -135,6 +135,13 @@ function deepEqual(a, b) {
   // only if they are the same value or are objects with the same
   // properties whose values are also equal when compared with
   // a recursive call to deepEqual.
+    if(a === null || b === null){
+        if(a !== b) {
+
+            return false;
+
+        }
+    }
     if(typeof a === 'object' && typeof b === 'object'){
         for(var key in a){
             if(b.hasOwnProperty(key)){
