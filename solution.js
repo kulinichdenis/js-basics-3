@@ -21,7 +21,7 @@ function sum(numbers) {
   // and returns the sum of these numbers.
    
     var sum=0;
-    for(var i=0; i < numbers.length; i++){
+    for(var i = 0; i < numbers.length; i++){
 //        if(typeof numbers[i] !== 'number'){
 //            return NaN;
 //        }
@@ -35,7 +35,7 @@ function reverseArray(arr) {
   // Write a function which takes an array as argument
   // and produces a new array that has the same elements in the inverse order.
    var arrInner=[];
-    for(var i=arr.length-1; 0 <= i; i--){
+    for(var i = arr.length-1; 0 <= i; i--){
 
         arrInner.push(arr[i]);
     }
@@ -97,7 +97,6 @@ function arrayToList(arr) {
 
 function listToArray(list) {
     // Write a function that produces an array from a list
-
     var arr = [];
     for (var item in list){
         if (typeof list[item] === 'object' && list[item] !== null) {
@@ -113,18 +112,25 @@ function listToArray(list) {
 function prepend(item, list) {
   // Write a function which takes an element and a list and creates a new list
   // that adds the element to the front of the input list.
-  var listNew;
-   listNew.new = item;
-   for(var key in list){
-       listNew[key] = temp[key];
-   }
-    return listNew;
+
+    var newList = {value:item, rest:list};
+    return newList;
 }
 
 function nth(n, list) {
   // Write which takes a list and a number and returns the element at the
   // given position in the list, or undefined when there is no such element.
   // It should be recursive.
+    var obj;
+    if(list === null){
+        return undefined;
+    }
+    if(list['value'] === n+1){
+         return list['value'];
+     }else{
+         obj = nth(n,list['rest']);
+     }
+    return obj;
 }
 
 function deepEqual(a, b) {
@@ -137,9 +143,7 @@ function deepEqual(a, b) {
   // a recursive call to deepEqual.
     if(a === null || b === null){
         if(a !== b) {
-
             return false;
-
         }
     }
     if(typeof a === 'object' && typeof b === 'object'){
